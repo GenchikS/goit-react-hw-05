@@ -1,0 +1,14 @@
+
+.imgProfile{
+    width: 100px;
+    height: 140px;
+    border-radius: 6px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+p{
+    margin: 0;
+}

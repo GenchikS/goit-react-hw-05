@@ -1,14 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { useState } from 'react'
+// import './App.css'
+import {Routes, Route} from "react-router-dom"
+import Navigation from './components/Navigation'
 
-function App() {
-  return (
-    <>
-      <p>hello</p>
-    </>
+import HomePage from './pages/HomePage'
+import MovieDetailsPage from './pages/MovieDetailsPage'
+import NotFoundPage from './pages/NotFoundPage'
+import MovieCast from "./components/MovieCast"
+import MovieReviews from "./components/MovieReviews"
+
+
+export default function App() {
+  
+  
+
+return (
+    <div>
+      <Navigation/>
+      <Routes>
+              <Route path="/" element={<HomePage/>}/>
+              <Route path="/movies/:movieId" element={<MovieDetailsPage/>}>
+                  <Route path="cast" element={<MovieCast/>}/>
+                  <Route path="reviews" element={<MovieReviews/>}/>
+              </Route>
+              <Route path="*" element={<NotFoundPage/>}/>
+      </Routes>
+    </div>
   )
 }
-
-export default App

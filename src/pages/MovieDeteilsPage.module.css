@@ -1,0 +1,20 @@
+.container{
+display: flex;
+flex-direction: row;
+}
+
+.img{
+    width: 250px;
+    height: 320px;
+    border-radius: 8px;
+}
+
+.textContainer{
+margin-left: 24px;
+}
+
+.titleText{
+    font-size: 22px;
+    font-weight: 500;
+    color: black;
+}

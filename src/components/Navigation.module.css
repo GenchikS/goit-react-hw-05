@@ -1,0 +1,21 @@
+.containerNavi{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .link{
+    font-weight: 600;
+    font-size: 24px;
+    color: black;
+  }
+
+  .active{
+    color: rgb(185, 62, 62)
+
+  }
+
+  .list{
+    list-style-type: none;
+    margin-left: 32px;
+  }
