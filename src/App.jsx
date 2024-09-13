@@ -8,6 +8,7 @@ import MovieDetailsPage from './pages/MovieDetailsPage'
 import NotFoundPage from './pages/NotFoundPage'
 import MovieCast from "./components/MovieCast"
 import MovieReviews from "./components/MovieReviews"
+import MoviesPage from "./pages/MoviesPage"
 
 
 export default function App() {
@@ -23,6 +24,7 @@ return (
                   <Route path="cast" element={<MovieCast/>}/>
                   <Route path="reviews" element={<MovieReviews/>}/>
               </Route>
+              <Route path="/movies" element={<MoviesPage/>}/>
               <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </div>
