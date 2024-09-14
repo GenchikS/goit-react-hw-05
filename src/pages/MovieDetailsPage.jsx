@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {filmId} from '../api'
 import css from './MovieDeteilsPage.module.css'
 // import axios from "axios";
+
+// import { useSearchParams } from "react-router-dom";
 
 
 export default function MovieDetailsPage(){
     const paramsId = useParams();
     // перевірка ID з хука useParams
     // console.log("paramsId", paramsId)
+
+    const location = useLocation();
+    console.log("MDP", location);
 
     const [photo, setPhoto] = useState("")
     const [title, setTitle] = useState("")
@@ -27,7 +32,7 @@ export default function MovieDetailsPage(){
             setRating(() => {return (data.vote_average*10).toFixed()})
             setOverview(data.overview)
             const allganres = data.genres;
-            setGenres(() => {allganres.map((all)=> <p>{all.name}</p>)})
+            setGenres(() => {allganres.map((all)=> <p key={all.id}>{all.name}</p>)})
             // console.log("ganres", allganres)
             // console.log("ganres", genres)
 

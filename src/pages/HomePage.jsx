@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 import { collectionsFilms } from "../api"
 import css from "./HomePage.module.css"
-import MoviesPage from "./MoviesPage"
+// import MoviesPage from "./MoviesPage"
 import { Link } from "react-router-dom"
 
 
@@ -10,15 +10,15 @@ export default function HomePage(){
 
     const [trendings, setTrending] = useState([])
 
-    useEffect(()=>{
-        async function fetchData() {
-            const data = await collectionsFilms();
-            // перевірка масиву
-            // console.log("data", data)
-            setTrending(data)
-        }
-        fetchData()
-    }, [])
+    useEffect(() => {
+      async function fetchData() {
+        const data = await collectionsFilms();
+        // перевірка масиву
+        // console.log("data", data);
+        setTrending(data);
+      }
+      fetchData();
+    }, []);
 
 
     return (

@@ -24,7 +24,7 @@ return (
                   <Route path="cast" element={<MovieCast/>}/>
                   <Route path="reviews" element={<MovieReviews/>}/>
               </Route>
-              <Route path="/movies" element={<MoviesPage/>}/>
+              <Route path="/movies/" element={<MoviesPage/>}/>
               <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </div>

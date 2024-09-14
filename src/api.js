@@ -54,3 +54,14 @@ export const reviewsFilms = async(paramsId)=>{
       .catch(err => console.error(err))
       return response;  
 }
+
+export const searchFilm = async (query) => {
+  // console.log("query", query);
+  const response = axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`)
+  .then((response) => {
+      // console.log("response", response);
+      return response;
+    })
+    .catch((err) => console.error(err));
+  return response;
+};
