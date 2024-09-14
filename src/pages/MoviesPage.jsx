@@ -11,12 +11,8 @@ export default function MoviesPage() {
   const [query, setQuery] = useState("")
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFilmArr, setSearchFilmArr] = useState([])
-  
-  const [searchParams, setSearchParams] = useSearchParams();
-  // const queryAll = params.get(`query`);
-  // console.log("queryAll", queryAll);
-  
-  //  ф-ція повернення значення form
+
+ //  ф-ція повернення значення form
   const formSubmit = (evn) => {
     evn.preventDefault();
     setQuery(searchQuery);
@@ -31,15 +27,13 @@ export default function MoviesPage() {
     }
     // перевірка значення парамутру
     // console.log(`query`, evn.target.elements.query.value);
-    // params.set("query", evn.target.elements.query.value);
-    // setParams(params) // ?? ""  //  якщо параметр null то поверне ""
     setSearchQuery("");
     //  перевірка значення яке повертає form
       // console.log("searchQuery", searchQuery);
   };
   
   const onHandeleChange = (evn) => {
-      setSearchQuery(evn.target.value);
+    setSearchQuery(evn.target.value);
   };
   
   useEffect(() => {
@@ -70,10 +64,11 @@ export default function MoviesPage() {
         <button type="submit">Search</button>
       </form>
       <ul>
-        {searchFilmArr.length > 0 &&
+        {
+          searchFilmArr.length > 0 &&
           searchFilmArr.map((film) => (
             <li key={film.id}>
-              <Link to={`/movies/${film.title}`} state={location}>
+              <Link to={`/movies/${film.id}`} state={location}>
                 {film.title}
               </Link>
             </li>
@@ -82,3 +77,5 @@ export default function MoviesPage() {
     </div>
   );
 }
+
+
