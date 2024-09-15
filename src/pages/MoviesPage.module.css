@@ -1,0 +1,47 @@
+.container{
+    margin-left: 32px;
+}
+
+.form{
+    margin-bottom: 32px;
+}
+
+.containerList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 16px;
+    
+}
+
+.input{
+width: 160px;
+height: 24px;
+padding: 8px;
+border: 2px solid #111111;
+border-radius: 4px;
+}
+
+.button{
+    background-color: rgb(159, 144, 244);
+    margin-left: 16px;
+}
+
+.list{
+    max-width: 140px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.img{
+    width: 120px;
+    height: 120px;
+}

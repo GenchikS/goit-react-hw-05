@@ -1,4 +1,8 @@
 import axios from 'axios'
+//  Описаний у документації
+import iziToast from "izitoast";
+// Додатковий імпорт стилів
+import "izitoast/dist/css/iziToast.min.css";
 
 const API_KEY = `c70ac1a23ae822ab5b2881638ada5783`
 
@@ -15,7 +19,15 @@ const options = {
 export const collectionsFilms = async ()=> {
     const response = axios.get(url, options)
     .then(response => {return response.data.results})
-    .catch(err => console.error(err))
+      .catch(err => {
+        return iziToast.show({
+          message: `Sorry, ${err}. Please try again!`,
+          messageColor: `rgb(0,0,0)`,
+          messageSize: 18,
+          position: `topCenter`,
+          progressBarColor: `rgb(255,0,0)`,
+        });
+      })
     return response;
 }
 
@@ -29,7 +41,15 @@ export const filmId = async (paramsId)=> {
     return response.data})
     // response.data.
     // backdrop_path})
-  .catch(err => console.error(err))
+    .catch(err => {
+      return iziToast.show({
+        message: `Sorry, ${err}. Please try again!`,
+        messageColor: `rgb(0,0,0)`,
+        messageSize: 18,
+        position: `topCenter`,
+        progressBarColor: `rgb(255,0,0)`,
+      })
+    })
   return response;
 }
 
@@ -40,7 +60,13 @@ export const castFilms = async(paramsId)=>{
     .then(response=> {
       // console.log("response", response.data.cast);
       return response.data.cast})
-      .catch(err => console.error(err))
+      .catch(err => {return iziToast.show({
+        message: `Sorry, ${err}. Please try again!`,
+        messageColor: `rgb(0,0,0)`,
+        messageSize: 18,
+        position: `topCenter`,
+        progressBarColor: `rgb(255,0,0)`,
+      });})
       return response;  
 }
 
@@ -51,7 +77,13 @@ export const reviewsFilms = async(paramsId)=>{
     .then(response=> {
       // console.log("response", response.data.results);
       return response.data.results})
-      .catch(err => console.error(err))
+      .catch(err => {return iziToast.show({
+        message: `Sorry, ${err}. Please try again!`,
+        messageColor: `rgb(0,0,0)`,
+        messageSize: 18,
+        position: `topCenter`,
+        progressBarColor: `rgb(255,0,0)`,
+      });})
       return response;  
 }
 
@@ -62,6 +94,12 @@ export const searchFilm = async (query) => {
       // console.log("response", response);
       return response;
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {return iziToast.show({
+      message: `Sorry, ${err}. Please try again!`,
+      messageColor: `rgb(0,0,0)`,
+      messageSize: 18,
+      position: `topCenter`,
+      progressBarColor: `rgb(255,0,0)`,
+    });});
   return response;
 };

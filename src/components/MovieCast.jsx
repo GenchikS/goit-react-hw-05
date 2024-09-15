@@ -18,19 +18,28 @@ export default function MovieCast(){
         dataFetch()
     }, [paramsId])
 
-console.log("cast", casts)
+// console.log("cast", casts)
 
     return (
-        <div>{
-            casts.length > 0 && casts.map((cast)=>
+      <div className={css.container}>
+        {casts.length > 0 &&
+          casts.map((cast) => (
             <ul key={cast.id}>
-                <li><img className={css.imgProfile} src={`https://image.tmdb.org/t/p/w500${cast.profile_path
-}`} alt=''/></li>
-                <li><p>{cast.name}</p></li>
-                <li><p>Character: {cast.character}</p></li>
+              <li>
+                <img
+                  className={css.imgProfile}
+                  src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                  alt=""
+                />
+              </li>
+              <li>
+                <p className={css.text}>{cast.name}</p>
+              </li>
+              <li>
+                <p className={css.text}>Character: {cast.character}</p>
+              </li>
             </ul>
-        
-        )}
-    </div>
-    )
+          ))}
+      </div>
+    );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import {searchFilm} from "../api"
+import { searchFilm } from "../api"
+import css from "./MoviesPage.module.css";
 //  Описаний у документації
 import iziToast from "izitoast";
 // Додатковий імпорт стилів
@@ -12,16 +13,16 @@ export default function MoviesPage() {
 
   //  створення параметру
   const [params, setParams] = useSearchParams()
-
   //  ф-ція повернення значення form
   const formSubmit = (evn) => {
+    
     //  створення параметру в url зі значенням query
     params.set("query", evn.target.elements.query.value);
     setParams(params);
-    console.log("evn", evn.target.elements.query.value);
+    // console.log("evn", evn.target.elements.query.value);
+    // console.log("params", params);
 
     evn.preventDefault();
-    // setQuery(evn.target.elements.query.value);
     const search = evn.target.elements.query.value;
     if (!search) {
       return iziToast.show({
@@ -32,50 +33,45 @@ export default function MoviesPage() {
         progressBarColor: `rgb(255,0,0)`,
       });
     }
+    
     evn.target.reset()
   };
+
   const query = params.get(`query`) ?? "";
+  // console.log("query", query);
 
-  // const onHandeleChange = (evn) => {
-  //   setSearchQuery(evn.target.value);
-  // };
-
-  useEffect(() => {
+ useEffect(() => {
     if (!query) {
       return;
     }
     const dataFeatch = async () => {
       const { data } = await searchFilm(query);
-      //   console.log("data", data.results);
+        console.log("data", data);
       setSearchFilmArr(data.results);
       // console.log("searchFilm", searchFilmArr);
     };
     dataFeatch();
   }, [query]);
   
-  // const params = useSearchParams()
-  
-
   const location = useLocation();
-  console.log("MP", location)
+  // console.log("MP", location)
+
   return (
-    <div>
-      <form onSubmit={formSubmit}>
-        <input
-          // value={query}
-          name="query"
-          type="text"
-          placeholder="Input search"
-          // onChange={onHandeleChange}
-        />
-        <button type="submit">Search</button>
+    <div className={css.container}>
+      <form className={ css.form} onSubmit={formSubmit}>
+        <input className={css.input} name="query" type="text" placeholder="Input search" />
+        <button className={css.button} type="submit">Search</button>
       </form>
-      <ul>
-        {
-          searchFilmArr.length > 0 &&
+      <ul className={css.containerList}>
+        {searchFilmArr.length > 0 &&
           searchFilmArr.map((film) => (
-            <li key={film.id}>
-              <Link to={`/movies/${film.id}`} state={location} >
+            <li className={css.list} key={film.id}>
+              <img
+                className={css.img}
+                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                alt={`${film.title}`}
+              />
+              <Link to={`/movies/${film.id}`} state={location}>
                 {film.title}
               </Link>
             </li>

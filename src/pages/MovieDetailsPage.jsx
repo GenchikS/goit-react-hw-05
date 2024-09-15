@@ -3,10 +3,6 @@ import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {filmId} from '../api'
 import css from './MovieDeteilsPage.module.css'
-// import axios from "axios";
-
-// import { useSearchParams } from "react-router-dom";
-
 
 export default function MovieDetailsPage(){
     const paramsId = useParams();
@@ -14,7 +10,7 @@ export default function MovieDetailsPage(){
     // console.log("paramsId", paramsId)
 
     const location = useLocation();
-    console.log("MDP", location);
+    // console.log("MDP.st", location.state);
 
     const [photo, setPhoto] = useState("")
     const [title, setTitle] = useState("")
@@ -42,27 +38,35 @@ export default function MovieDetailsPage(){
     
 
     return (
-        <div>
-            <Link to="/">Go back</Link>
-            <div className={css.container}>
-            <img className={css.img} src={`https://image.tmdb.org/t/p/w500${photo}`} alt={title} />
-            <div className={css.textContainer}>
+      <div className={css.container}>
+        <Link to={location.state ?? "/"}>Go back</Link>
+        <div className={css.containerImg}>
+          <img
+            className={css.img}
+            src={`https://image.tmdb.org/t/p/w500${photo}`}
+            alt={title}
+          />
+          <div className={css.textContainer}>
             <h2>{title}</h2>
             <p>User Score: {rating}%</p>
             <h3 className={css.titleText}>Overview</h3>
             <p>{overview}</p>
             <h3 className={css.titleText}>Genres</h3>
             <p>{genres}</p>
-            </div>
-            </div>
-            <div>
-                <p>Additionl information</p>
-                <ul>
-                    <li><NavLink to="cast">Cast</NavLink></li>
-                    <li><NavLink to="reviews">Reviews</NavLink></li>
-                </ul>
-            </div>
-            <Outlet/>
+          </div>
         </div>
-    )
+        <div className={css.listTitle}>
+          <p>Additionl information</p>
+          <ul>
+            <li>
+              <NavLink to="cast">Cast</NavLink>
+            </li>
+            <li>
+              <NavLink to="reviews">Reviews</NavLink>
+            </li>
+          </ul>
+        </div>
+        <Outlet />
+      </div>
+    );
 }

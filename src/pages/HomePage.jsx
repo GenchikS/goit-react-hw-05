@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react"
-
 import { collectionsFilms } from "../api"
 import css from "./HomePage.module.css"
-// import MoviesPage from "./MoviesPage"
 import { Link } from "react-router-dom"
 
 
 export default function HomePage(){
-
-    const [trendings, setTrending] = useState([])
+const [trendings, setTrending] = useState([])
 
     useEffect(() => {
       async function fetchData() {
@@ -20,8 +17,7 @@ export default function HomePage(){
       fetchData();
     }, []);
 
-
-    return (
+return (
         <div>
             <p className={css.title}>Trending today</p>
             <ul className={css.list}>{
