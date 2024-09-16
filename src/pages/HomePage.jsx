@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { collectionsFilms } from "../api"
 import css from "./HomePage.module.css"
-import { Link } from "react-router-dom"
+
+import MovieList from "../components/MovieList"
 
 
 export default function HomePage(){
@@ -18,12 +19,9 @@ const [trendings, setTrending] = useState([])
     }, []);
 
 return (
-        <div>
-            <p className={css.title}>Trending today</p>
-            <ul className={css.list}>{
-            trendings.length >0 && trendings.map((trending)=> <li key={trending.id}><Link to={`/movies/${trending.id}`}>{trending.title}</Link></li>)
-            }
-            </ul>
-        </div>
-    )
+  <div className={css.title}>
+    <p>Trending today</p>
+    {trendings.length > 0 && <MovieList object={trendings} />}
+  </div>
+);
 }

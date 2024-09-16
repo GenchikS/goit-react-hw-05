@@ -6,13 +6,6 @@
     margin-bottom: 32px;
 }
 
-.containerList{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
 ul{
     list-style-type: none;
     margin: 0;
@@ -32,13 +25,6 @@ border-radius: 4px;
 .button{
     background-color: rgb(159, 144, 244);
     margin-left: 16px;
-}
-
-.list{
-    max-width: 140px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
 }
 
 .img{

@@ -6,6 +6,7 @@ import iziToast from "izitoast";
 // Додатковий імпорт стилів
 import "izitoast/dist/css/iziToast.min.css";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
+import MovieList from "../components/MovieList";
 
 
 export default function MoviesPage() {
@@ -46,7 +47,7 @@ export default function MoviesPage() {
     }
     const dataFeatch = async () => {
       const { data } = await searchFilm(query);
-        console.log("data", data);
+        // console.log("data", data);
       setSearchFilmArr(data.results);
       // console.log("searchFilm", searchFilmArr);
     };
@@ -58,25 +59,18 @@ export default function MoviesPage() {
 
   return (
     <div className={css.container}>
-      <form className={ css.form} onSubmit={formSubmit}>
-        <input className={css.input} name="query" type="text" placeholder="Input search" />
-        <button className={css.button} type="submit">Search</button>
+      <form className={css.form} onSubmit={formSubmit}>
+        <input
+          className={css.input}
+          name="query"
+          type="text"
+          placeholder="Input search"
+        />
+        <button className={css.button} type="submit">
+          Search
+        </button>
       </form>
-      <ul className={css.containerList}>
-        {searchFilmArr.length > 0 &&
-          searchFilmArr.map((film) => (
-            <li className={css.list} key={film.id}>
-              <img
-                className={css.img}
-                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                alt={`${film.title}`}
-              />
-              <Link to={`/movies/${film.id}`} state={location}>
-                {film.title}
-              </Link>
-            </li>
-          ))}
-      </ul>
+      {searchFilmArr.length > 0 && <MovieList object={searchFilmArr} location={location} />}
     </div>
   );
 }
