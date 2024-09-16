@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {filmId} from '../api'
@@ -17,7 +17,11 @@ export default function MovieDetailsPage(){
     const [rating, setRating] = useState("")
     const [overview, setOverview] = useState("")
     const [genres, setGenres] = useState([])
-
+  
+  const locationRef = useRef(location.state ?? "/");
+  // перевірка переданого url для збережкння та передачі повернення назад. Зберігається навіть при оновленні сторінки
+    // console.log("reference", locationRef.current);
+  
     useEffect(()=>{
         async function fetchData () {
             const data = await filmId(paramsId);
@@ -31,7 +35,7 @@ export default function MovieDetailsPage(){
             setGenres(() => {allganres.map((all)=> <p key={all.id}>{all.name}</p>)})
             // console.log("ganres", allganres)
             // console.log("ganres", genres)
-
+            
         }
         fetchData ()
     },[paramsId])
@@ -39,7 +43,7 @@ export default function MovieDetailsPage(){
 
     return (
       <div className={css.container}>
-        <Link to={location.state ?? "/"}>Go back</Link>
+        <Link to={locationRef.current}>Go back</Link>
         <div className={css.containerImg}>
           <img
             className={css.img}

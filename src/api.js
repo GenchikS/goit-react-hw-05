@@ -54,38 +54,50 @@ export const filmId = async (paramsId)=> {
 }
 
 
-export const castFilms = async(paramsId)=>{
+export const castFilms = async (movieId) => {
   // console.log("paramsId", paramsId)
-    const response = axios.get(`https://api.themoviedb.org/3/movie/${paramsId.movieId}/credits?api_key=${API_KEY}`)
-    .then(response=> {
+  const response = axios
+    .get(
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`
+    )
+    .then((response) => {
       // console.log("response", response.data.cast);
-      return response.data.cast})
-      .catch(err => {return iziToast.show({
+      return response.data.cast;
+    })
+    .catch((err) => {
+      return iziToast.show({
         message: `Sorry, ${err}. Please try again!`,
         messageColor: `rgb(0,0,0)`,
         messageSize: 18,
         position: `topCenter`,
         progressBarColor: `rgb(255,0,0)`,
-      });})
-      return response;  
-}
+      });
+    });
+  return response;
+};
 
 
-export const reviewsFilms = async(paramsId)=>{
+export const reviewsFilms = async (movieId) => {
   // console.log("paramsId", paramsId)
-    const response = axios.get(`https://api.themoviedb.org/3/movie/${paramsId.movieId}/reviews?api_key=${API_KEY}`)
-    .then(response=> {
+  const response = axios
+    .get(
+      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}`
+    )
+    .then((response) => {
       // console.log("response", response.data.results);
-      return response.data.results})
-      .catch(err => {return iziToast.show({
+      return response.data.results;
+    })
+    .catch((err) => {
+      return iziToast.show({
         message: `Sorry, ${err}. Please try again!`,
         messageColor: `rgb(0,0,0)`,
         messageSize: 18,
         position: `topCenter`,
         progressBarColor: `rgb(255,0,0)`,
-      });})
-      return response;  
-}
+      });
+    });
+  return response;
+};
 
 export const searchFilm = async (query) => {
   // console.log("query", query);
